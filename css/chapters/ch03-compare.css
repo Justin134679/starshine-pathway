@@ -1261,7 +1261,7 @@
     width: 100%;
     max-width: 520px;
     margin: 0 auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1.14;
     border-radius: 22px;
     overflow: hidden;
     background: #ECE5D6;
@@ -1271,6 +1271,7 @@
       0 30px 60px -28px rgba(16,36,58,0.30),
       0 14px 28px -14px rgba(16,36,58,0.16);
   }
+  @media (min-width: 768px) { .sb-scene { aspect-ratio: 1 / 1.08; } }
   @media (min-width: 1024px) { .sb-scene { max-width: none; } }
 
   .sb-scene-img {

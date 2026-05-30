@@ -634,7 +634,7 @@
   .dhm-stage {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1.14;
     border-radius: 30px;
     overflow: hidden;
     isolation: isolate;
@@ -645,6 +645,7 @@
       0 34px 64px -28px rgba(7,31,61,0.40),
       0 12px 26px -14px rgba(7,31,61,0.20);
   }
+  @media (min-width: 768px) { .dhm-stage { aspect-ratio: 1 / 1.08; } }
 
   /* image layer */
   .dhm-photo {
