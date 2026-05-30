@@ -39,7 +39,8 @@ function logLead_(tag, detail) {
 function doGet() {
   return createJsonResponse_({
     ok: true,
-    service: 'Starshine Pathway lead form is running.'
+    service: 'Starshine Pathway lead form is running.',
+    scriptId: ScriptApp.getScriptId()
   });
 }
 
@@ -149,7 +150,11 @@ function doPost(e) {
             '最想了解：'   + interest,
             '來源：'       + source,
             '提交時間：'   + (payload.submittedAt || ''),
-            'User-Agent：' + userAgent
+            'User-Agent：' + userAgent,
+            '',
+            '寫入試算表：' + spreadsheet.getName(),
+            '寫入分頁：'   + sheet.getName(),
+            '試算表網址：' + spreadsheet.getUrl()
           ].join('\n')
         });
       } catch (mailErr) {
@@ -171,8 +176,47 @@ function doPost(e) {
 function authorizeOnce() {
   var spreadsheetId = String(PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID') || '').trim();
   if (!spreadsheetId) throw new Error('請先設定 SPREADSHEET_ID');
-  SpreadsheetApp.openById(spreadsheetId);
-  MailApp.getRemainingDailyQuota();
+  try {
+    SpreadsheetApp.openById(spreadsheetId);
+    MailApp.getRemainingDailyQuota();
+    console.log('authorizeOnce OK | scriptId=' + ScriptApp.getScriptId() + ' | spreadsheetId length=' + spreadsheetId.length);
+  } catch (error) {
+    throw new Error('authorizeOnce 失敗：' + (error && error.message ? error.message : error));
+  }
+}
+
+/** 手動執行這個函式，用來確認指令碼屬性與試算表連線狀態 */
+function diagnoseSetup() {
+  var props = PropertiesService.getScriptProperties();
+  var spreadsheetId = String(props.getProperty('SPREADSHEET_ID') || '').trim();
+  var formToken = String(props.getProperty('FORM_TOKEN') || '').trim();
+  var notifyEmail = String(props.getProperty('NOTIFY_EMAIL') || '').trim();
+  var result = {
+    scriptId: ScriptApp.getScriptId(),
+    hasSpreadsheetId: !!spreadsheetId,
+    spreadsheetIdLength: spreadsheetId.length,
+    hasFormToken: !!formToken,
+    formTokenLength: formToken.length,
+    hasNotifyEmail: !!notifyEmail,
+    spreadsheetOpenOk: false,
+    spreadsheetName: ''
+  };
+
+  if (!spreadsheetId) {
+    console.log(JSON.stringify(result));
+    throw new Error('SPREADSHEET_ID 是空的：請確認是在這個 Apps Script 專案的「指令碼屬性」設定。');
+  }
+
+  try {
+    var spreadsheet = SpreadsheetApp.openById(spreadsheetId);
+    result.spreadsheetOpenOk = true;
+    result.spreadsheetName = spreadsheet.getName();
+    console.log(JSON.stringify(result));
+    return result;
+  } catch (error) {
+    console.log(JSON.stringify(result));
+    throw new Error('試算表打不開：' + (error && error.message ? error.message : error));
+  }
 }
 
 /** 清洗字串：移除控制字元與前後空白 */

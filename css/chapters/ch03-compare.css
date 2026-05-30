@@ -1355,7 +1355,7 @@
     margin-top: -4px;
     font-family: "Noto Sans TC", sans-serif;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
     color: rgba(21,38,63,0.58);
     letter-spacing: 0.06em;
   }
@@ -1363,7 +1363,7 @@
     position: relative;
     font-family: "Noto Serif TC", serif;
     color: #15263F;
-    font-size: 15.5px;
+    font-size: 16.5px;
     line-height: 1.75;
     letter-spacing: 0.02em;
     margin: 6px 0 0;
@@ -1391,9 +1391,9 @@
   .sb-scene-risks {
     margin-top: auto;
     font-family: "Noto Sans TC", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     color: rgba(21,38,63,0.72);
-    line-height: 1.35;
+    line-height: 1.4;
     letter-spacing: 0.04em;
     word-break: keep-all;
     display: grid;
@@ -1420,14 +1420,14 @@
   @media (min-width: 768px) {
     .sb-scene-num   { font-size: 24px; }
     .sb-scene-name  { font-size: 30px; }
-    .sb-scene-feel  { font-size: 13px; }
-    .sb-scene-truth { font-size: 16.5px; }
-    .sb-scene-risks { font-size: 12.8px; gap: 8px; }
+    .sb-scene-feel  { font-size: 14.5px; }
+    .sb-scene-truth { font-size: 17.5px; }
+    .sb-scene-risks { font-size: 13.8px; gap: 8px; }
   }
   @media (min-width: 1024px) {
     .sb-scene-name  { font-size: 34px; }
-    .sb-scene-truth { font-size: 18px; }
-    .sb-scene-risks { font-size: 13.2px; }
+    .sb-scene-truth { font-size: 19px; }
+    .sb-scene-risks { font-size: 14.2px; }
   }
 
   .sb-scene-progress {
