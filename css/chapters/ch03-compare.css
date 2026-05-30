@@ -34,7 +34,7 @@
     inset: 0 -6% 0 32%;
     z-index: 0;
     pointer-events: none;
-    background-image: url('../../images/desk-evaluation.png');
+    background-image: url('../../images/desk-evaluation.webp');
     background-size: cover;
     background-position: 78% 50%;
     filter: saturate(0.78) contrast(0.96) brightness(1.04);
@@ -693,7 +693,7 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-image: url('../../images/ch03-bg.png');
+    background-image: url('../../images/ch03-bg.jpg');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;

@@ -9,37 +9,37 @@
         cat: '01 · 體態與代謝',
         tags: '外食 / 澱粉 / 代謝',
         desc: '戒不掉外食與精緻澱粉，肚子越來越難消，體檢數字也開始提醒自己該重視。',
-        img: 'images/need-01-body.png'
+        img: 'images/need-01-body.jpg'
       },
       '2': {
         cat: '02 · 腸胃與消化',
         tags: '三餐不正常 / 脹氣 / 沉重感',
         desc: '三餐時間被工作切碎，吃得快也吃得急，腸胃在每天的午後悄悄發出警訊。',
-        img: 'images/need-02-gut.png'
+        img: 'images/need-02-gut.jpg'
       },
       '3': {
         cat: '03 · 循環與保養',
         tags: '高壓 / 高醣 / 日常保養',
         desc: '年紀到了，開始記得量血壓、記下每天的飲食，把保養變成不必催促的日常。',
-        img: 'images/need-03-circulation.png'
+        img: 'images/need-03-circulation.jpg'
       },
       '4': {
         cat: '04 · 睡眠與情緒',
         tags: '責任 / 腦袋停不下來 / 疲累',
         desc: '累了一天躺下後，腦袋還在跑明天的事，淺眠成了再熟悉不過的夜晚。',
-        img: 'images/need-04-sleep.png'
+        img: 'images/need-04-sleep.jpg'
       },
       '5': {
         cat: '05 · 免疫與防護',
         tags: '換季 / 大人小孩 / 防護力',
         desc: '換季那幾週，全家輪流不舒服，從早晨出門到晚上回家都是要照顧的細節。',
-        img: 'images/need-05-immunity.png'
+        img: 'images/need-05-immunity.webp'
       },
       '6': {
         cat: '06 · 護眼與抗衰',
         tags: '電腦 / 滑手機 / 乾澀模糊',
         desc: '整天盯著螢幕，下班還繼續滑手機，眼睛從上午就開始酸澀到失焦。',
-        img: 'images/need-06-eyes.png'
+        img: 'images/need-06-eyes.jpg'
       }
     };
 

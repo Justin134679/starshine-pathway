@@ -51,7 +51,7 @@
     inset: 0 -6% 0 -6%;
     z-index: 0;
     pointer-events: none;
-    background-image: url('../../images/health-daily-collage.png');
+    background-image: url('../../images/health-daily-collage.webp');
     background-size: cover;
     /* mobile: bottom-biased so the collage breathes below the title */
     background-position: 50% 78%;
@@ -840,7 +840,7 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-image: url('../../images/ch04-section-bg.png');
+    background-image: url('../../images/ch04-section-bg.jpg');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;

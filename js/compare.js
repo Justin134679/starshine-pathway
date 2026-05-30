@@ -7,27 +7,27 @@
       "1": { num: "01", name: "兼職",         feel: "看起來安全",
              truth: "只是下班後再上一份班。",
              risks: ["時間被切走", "體力消耗", "不易累積"],
-             img: "images/side-01-parttime.png" },
+             img: "images/side-01-parttime.jpg" },
       "2": { num: "02", name: "接案",         feel: "看起來自由",
              truth: "有案才有收入。",
              risks: ["案源不穩", "溝通修改", "自己收款"],
-             img: "images/side-02-freelance.png" },
+             img: "images/side-02-freelance.jpg" },
       "3": { num: "03", name: "電商 / 微商",  feel: "看起來好賺",
              truth: "庫存、客服、流量都要自己扛。",
              risks: ["出貨壓力", "庫存風險", "售後成本"],
-             img: "images/side-03-ecom.png" },
+             img: "images/side-03-ecom.jpg" },
       "4": { num: "04", name: "加盟創業",     feel: "看起來有靠山",
              truth: "固定成本從第一天就開始。",
              risks: ["店租人事", "設備庫存", "現金流"],
-             img: "images/side-04-franchise.png" },
+             img: "images/side-04-franchise.jpg" },
       "5": { num: "05", name: "自媒體",       feel: "看起來有機會",
              truth: "很多人撐不到變現那天。",
              risks: ["持續輸出", "流量波動", "變現等待"],
-             img: "images/side-05-creator.png" },
+             img: "images/side-05-creator.jpg" },
       "6": { num: "06", name: "投資",         feel: "看起來被動",
              truth: "本金和風險都是真的。",
              risks: ["本金波動", "判斷壓力", "情緒承受"],
-             img: "images/side-06-invest.png" }
+             img: "images/side-06-invest.jpg" }
     };
 
     var elNum   = scene.querySelector('[data-scene="num"]');

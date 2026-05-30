@@ -41,7 +41,7 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background-image: url('../../images/desk-plan.png');
+    background-image: url('../../images/desk-plan.jpg');
     background-size: cover;
     background-position: center 38%;
     filter: saturate(0.94) brightness(1.02);
