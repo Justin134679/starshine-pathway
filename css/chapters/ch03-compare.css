@@ -775,16 +775,34 @@
     word-break: keep-all;
     text-shadow: 0 1px 0 rgba(255,255,255,0.5);
   }
+  /* "每一種" — typographic pivot, weight only (avoids competing with the gold .em) */
+  .ch03b-h1 .pivot {
+    display: inline-block;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #15263F;
+  }
+  /* "承擔的事" — narrative emphasis aligned with ch02 .pain-em */
   .ch03b-h1 .em {
-    color: #B0852E;
     position: relative;
+    display: inline-block;
+    color: #A57A24;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 0 rgba(255,253,247,0.7);
   }
   .ch03b-h1 .em::after {
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: -4px;
-    height: 1px;
-    background: linear-gradient(to right, rgba(176,133,46,0.75), rgba(176,133,46,0.15));
+    left: 0.05em;
+    right: 0.05em;
+    bottom: -0.1em;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to right,
+      rgba(176,133,46,0.85) 0%,
+      rgba(176,133,46,0.55) 70%,
+      rgba(176,133,46,0.00) 100%);
   }
 
   .ch03b-sub {

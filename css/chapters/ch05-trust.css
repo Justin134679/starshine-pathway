@@ -106,16 +106,27 @@
     text-wrap: pretty;
     word-break: keep-all;
   }
+  /* "機會" — narrative emphasis aligned with ch02 .pain-em / ch03 .em / ch04 .em */
   .ch05-h1 .em {
-    color: #B0852E;
     position: relative;
+    display: inline-block;
+    color: #A57A24;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 0 rgba(255,253,247,0.7);
   }
   .ch05-h1 .em::after {
-    content:"";
-    position:absolute;
-    left:0; right:0; bottom:-3px;
-    height: 1px;
-    background: linear-gradient(to right, rgba(176,133,46,0.7), rgba(176,133,46,0.15));
+    content: "";
+    position: absolute;
+    left: 0.05em;
+    right: 0.05em;
+    bottom: -0.1em;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to right,
+      rgba(176,133,46,0.85) 0%,
+      rgba(176,133,46,0.55) 70%,
+      rgba(176,133,46,0.00) 100%);
   }
   .ch05-sub {
     font-family: "Noto Sans TC", sans-serif;

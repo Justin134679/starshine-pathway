@@ -155,6 +155,28 @@
     letter-spacing: 0.015em;
     text-wrap: balance;
   }
+  /* Narrative emphasis — brand-deep gold, hairline underline beneath */
+  .pain-headline .pain-em {
+    position: relative;
+    display: inline-block;
+    color: #A57A24;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 0 rgba(255,253,247,0.75);
+  }
+  .pain-headline .pain-em::after {
+    content: "";
+    position: absolute;
+    left: 0.05em;
+    right: 0.05em;
+    bottom: -0.12em;
+    height: 2px;
+    background: linear-gradient(to right,
+      rgba(176,133,46,0.85) 0%,
+      rgba(176,133,46,0.55) 70%,
+      rgba(176,133,46,0.00) 100%);
+    border-radius: 999px;
+  }
 
   /* Subhead block — paragraphs spaced, key phrase highlighted */
   .pain-sub {
