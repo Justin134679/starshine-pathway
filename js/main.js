@@ -20,13 +20,21 @@
       items.forEach(i => i.classList.remove('is-active'));
       el.classList.add('is-active');
       lastActive = el;
+      lastSwitchAt = Date.now();
     };
-    // Use a thin horizontal "trigger line" near 50% of viewport — cards
-    // activate as their center crosses mid-screen. Pick the item closest.
+    // Use a trigger line with hysteresis so tiny scroll movements do not
+    // immediately flip to the next item.
+    let lastSwitchAt = 0;
     const tick = () => {
-      const triggerY = window.innerHeight * 0.50;
+      if (Date.now() - lastSwitchAt < 420) return;
+      const triggerY = window.innerHeight * 0.58;
+      const switchMargin = Math.max(96, window.innerHeight * 0.16);
       let best = null;
       let bestDist = Infinity;
+      const activeRect = lastActive.getBoundingClientRect();
+      const activeCenter = activeRect.top + activeRect.height / 2;
+      const activeDist = Math.abs(activeCenter - triggerY);
+
       items.forEach(el => {
         const r = el.getBoundingClientRect();
         // only consider items at least partially in viewport
@@ -35,7 +43,7 @@
         const dist = Math.abs(center - triggerY);
         if (dist < bestDist) { bestDist = dist; best = el; }
       });
-      if (best) setActive(best);
+      if (best && (best === lastActive || bestDist + switchMargin < activeDist)) setActive(best);
     };
     let raf = null;
     const onScroll = () => {

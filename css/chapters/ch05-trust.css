@@ -127,6 +127,25 @@
     text-wrap: pretty;
     word-break: keep-all;
   }
+  .ch05-sub-em {
+    display: inline-block;
+    margin-top: 5px;
+    color: #8E6824;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+  .ch05-sub-em::after {
+    content: "";
+    position: absolute;
+    left: -0.08em;
+    right: -0.08em;
+    bottom: 0.1em;
+    height: 0.32em;
+    z-index: -1;
+    border-radius: 999px;
+    background: linear-gradient(to right, rgba(176,133,46,0.22), rgba(176,133,46,0.06));
+  }
   @media (min-width:768px) { .ch05-sub { font-size: 15.5px; } }
 
   /* QUOTE bridge — editorial banner (no card) */

@@ -727,10 +727,10 @@
 
   .ch03b-top {
     position: relative;
-    padding: 56px 0 120px;
+    padding: 56px 0 72px;
   }
   @media (min-width:768px) {
-    .ch03b-top { padding: 84px 0 140px; }
+    .ch03b-top { padding: 84px 0 92px; }
   }
 
   /* HEAD */
