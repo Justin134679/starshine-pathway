@@ -1,0 +1,15 @@
+.DS_Store
+Thumbs.db
+.thumbnail
+
+# Build-time 注入的密鑰設定，不進 Git
+config.runtime.js
+
+# 設計過程素材／草稿／舊版備份，不進 Git（保留在本機）
+uploads/
+scraps/
+ios-frame.jsx
+Starshine Landing Page.html
+Starshine Landing Page v1 (desktop).html
+Starshine Landing Page v2 (backup).html
+Starshine Mobile Preview.html

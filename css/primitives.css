@@ -1,0 +1,21 @@
+.photo-ph {
+    background-image:
+      repeating-linear-gradient(135deg, rgba(0,0,0,0.025) 0 1px, transparent 1px 14px),
+      linear-gradient(135deg, #cdd6d2, #e8ddc4);
+    position: relative;
+  }
+  .photo-ph-dark {
+    background-image:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 14px),
+      linear-gradient(135deg, #1a2e4a, #233a5a);
+  }
+  .ph-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: rgba(31,41,51,0.68);
+    text-align: center; padding: 10px; text-transform: uppercase;
+  }
+  .photo-ph-dark .ph-label { color: rgba(247,248,245,0.5); }

@@ -1,0 +1,17 @@
+:root {
+  --starshine-navy-900: #051528;
+  --starshine-navy-800: #071F3D;
+  --starshine-gold-600: #B0852E;
+  --starshine-gold-500: #C69A4A;
+  --starshine-gold-400: #D4AC63;
+  --starshine-gold-300: #E0C189;
+  --starshine-cream-50: #F7F8F5;
+  --starshine-cream-100: #F1EFE8;
+  --starshine-ink-900: #1F2933;
+  --starshine-ink-700: #2C3640;
+  --starshine-ink-500: #525B68;
+  --starshine-font-serif: "Noto Serif TC", "Songti TC", serif;
+  --starshine-font-sans: "Noto Sans TC", "PingFang TC", sans-serif;
+  --starshine-font-display: "Cormorant Garamond", "Noto Serif TC", serif;
+  --starshine-font-mono: "JetBrains Mono", Menlo, monospace;
+}

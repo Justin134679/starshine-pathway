@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#071F3D" />
+<title>星耀健康路徑計畫｜先看懂，再決定</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<!-- Tailwind via Play CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Flowbite -->
+<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 900: '#051528', 800: '#071F3D', 700: '#0B2F5B', 600: '#14406F' },
+          gold: { 600: '#B0852E', 500: '#C69A4A', 400: '#D4AC63', 300: '#E0C189', 100: '#F4E9D2' },
+          mint: { 200: '#DDEBE5', 100: '#EAF2EE' },
+          cream: { 50: '#F7F8F5', 100: '#F1EFE8' },
+          ink: { 900: '#1F2933', 700: '#2C3640', 500: '#525B68', 300: '#9CA2AA' },
+        },
+        fontFamily: {
+          serif: ['"Noto Serif TC"', '"Songti TC"', 'serif'],
+          sans: ['"Noto Sans TC"', '"PingFang TC"', 'sans-serif'],
+          display: ['"Cormorant Garamond"', '"Noto Serif TC"', 'serif'],
+          mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
+        },
+        maxWidth: { 'wrap': '1240px' },
+      },
+    },
+  };
+</script>
+
+<style type="text/tailwindcss">
+  @layer base {
+    html { scroll-behavior: smooth; }
+    body {
+      @apply font-sans bg-cream-50 text-ink-900 antialiased leading-relaxed;
+      /* room for sticky mobile CTA bar */
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    h1, h2, h3, h4 {
+      @apply font-serif text-navy-800 font-medium tracking-wide;
+      text-wrap: balance;
+    }
+  }
+  @layer components {
+    .wrap { @apply max-w-wrap mx-auto px-5 sm:px-8 lg:px-14; }
+    .section { @apply py-16 sm:py-24 lg:py-32 relative; }
+    .eyebrow {
+      @apply inline-flex items-center gap-3 text-[11px] sm:text-[13px] tracking-[0.22em] sm:tracking-[0.28em] text-gold-500 font-medium mb-5 sm:mb-7;
+    }
+    .eyebrow::before {
+      content: "";
+      @apply w-7 sm:w-9 h-px bg-gold-500 inline-block;
+    }
+    .eyebrow-light { @apply text-gold-400; }
+    .eyebrow-light::before { @apply bg-gold-400; }
+
+    .h-display {
+      @apply font-serif text-navy-800 leading-[1.4] font-medium;
+      font-size: clamp(26px, 6.5vw, 46px);
+      letter-spacing: 0.02em;
+    }
+    .h-display-light { @apply text-cream-50; }
+
+    .btn-primary {
+      @apply inline-flex items-center justify-center gap-2.5 bg-gold-500 text-navy-800 px-6 py-4 text-[14px] sm:text-[15px] font-medium tracking-[0.08em] rounded-sm border border-gold-500 transition-all duration-200 hover:bg-gold-400 active:scale-[0.98];
+      min-height: 52px;
+    }
+    .btn-ghost-light {
+      @apply inline-flex items-center justify-center gap-2.5 border border-white/40 text-cream-50 px-6 py-4 text-[14px] sm:text-[15px] font-medium tracking-[0.08em] rounded-sm transition-all duration-200 hover:border-gold-400 hover:text-gold-400 active:scale-[0.98];
+      min-height: 52px;
+    }
+    .btn-ghost {
+      @apply inline-flex items-center justify-center gap-2.5 border border-gold-500 text-gold-600 px-6 py-4 text-[14px] sm:text-[15px] font-medium tracking-[0.08em] rounded-sm transition-all duration-200 hover:bg-gold-500 hover:text-navy-800 active:scale-[0.98];
+      min-height: 52px;
+    }
+  }
+  span.text-gold-600 { color: #F7BE38; }
+</style>
+
+<!-- Layer 1: Design tokens -->
+<link rel="stylesheet" href="css/tokens.css" />
+<!-- Layer 2: Layout primitives -->
+<link rel="stylesheet" href="css/primitives.css" />
+<!-- Chapters -->
+<link rel="stylesheet" href="css/chapters/ch01-hero.css" />
+<link rel="stylesheet" href="css/chapters/ch03-compare.css" />
+<link rel="stylesheet" href="css/chapters/ch02-pain.css" />
+<!-- Components -->
+<link rel="stylesheet" href="css/components/nav.css" />
+<link rel="stylesheet" href="css/chapters/ch05-trust.css" />
+<link rel="stylesheet" href="css/chapters/ch04-market.css" />
+<link rel="stylesheet" href="css/chapters/ch06-cases.css" />
+<link rel="stylesheet" href="css/chapters/ch07-cta.css" />
+<script src="config.public.js"></script>
+<script src="config.runtime.js"></script>
+</head>
+<body class="overflow-x-hidden bg-navy-900">
+
+<!-- mobile drawer (Flowbite) — header is now overlaid on hero -->
+<!-- nav drawer — editorial -->
+<div id="navDrawer" class="nav-drawer fixed top-0 right-0 z-[60] h-screen overflow-y-auto transition-transform translate-x-full w-[88vw] max-w-[420px]" tabindex="-1" aria-labelledby="navDrawerLabel">
+  <!-- header -->
+  <div class="nav-drawer-head">
+    <div class="flex items-center gap-3">
+      <img src="images/logo-mark.png" alt="星耀 · 健康路徑計畫" class="w-9 h-9 rounded-md" />
+      <span class="font-serif text-cream-50 text-[14px] tracking-[0.14em] font-medium leading-none">星耀 · 健康路徑計畫</span>
+    </div>
+    <button type="button" data-drawer-hide="navDrawer" aria-controls="navDrawer" aria-label="關閉選單" class="nav-close">
+      <span class="nav-close-x" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </div>
+
+  <!-- chapters label -->
+  <div class="px-6 sm:px-7 pt-7 pb-3 flex items-center gap-3">
+    <span class="h-px flex-1 bg-gradient-to-r from-transparent via-gold-500/40 to-gold-500/40"></span>
+    <span class="font-mono text-gold-400/80 text-[9.5px] tracking-[0.32em]">CHAPTERS</span>
+    <span class="h-px flex-1 bg-gradient-to-l from-transparent via-gold-500/40 to-gold-500/40"></span>
+  </div>
+
+  <!-- items -->
+  <nav class="px-3 sm:px-4 py-3">
+    <a href="#pain" data-drawer-hide="navDrawer" class="nav-item">
+      <span class="nav-num">01</span>
+      <span class="nav-body"><span class="nav-name">副業痛點</span><span class="nav-sub">為什麼想多一份收入</span></span>
+      <span class="nav-arrow" aria-hidden="true">→</span>
+    </a>
+    <a href="#market" data-drawer-hide="navDrawer" class="nav-item">
+      <span class="nav-num">02</span>
+      <span class="nav-body"><span class="nav-name">健康市場</span><span class="nav-sub">藏在每個家庭的日常裡</span></span>
+      <span class="nav-arrow" aria-hidden="true">→</span>
+    </a>
+    <a href="#trust" data-drawer-hide="navDrawer" class="nav-item">
+      <span class="nav-num">03</span>
+      <span class="nav-body"><span class="nav-name">星耀合作優勢</span><span class="nav-sub">你的顧慮，被一個個接住</span></span>
+      <span class="nav-arrow" aria-hidden="true">→</span>
+    </a>
+    <a href="#cases" data-drawer-hide="navDrawer" class="nav-item">
+      <span class="nav-num">04</span>
+      <span class="nav-body"><span class="nav-name">案例分享</span><span class="nav-sub">已經走在路上的人</span></span>
+      <span class="nav-arrow" aria-hidden="true">→</span>
+    </a>
+    <a href="#guide" data-drawer-hide="navDrawer" class="nav-item">
+      <span class="nav-num">05</span>
+      <span class="nav-body"><span class="nav-name">指南內容</span><span class="nav-sub">這份指南為你準備了什麼</span></span>
+      <span class="nav-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+
+  <!-- closing CTA card -->
+  <div class="px-6 sm:px-7 pb-7 pt-2">
+    <div class="nav-cta-card">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-display italic text-gold-400 text-[13px] leading-none">No.<span class="text-[15px]">12</span></span>
+        <span class="h-px flex-1 bg-gold-500/30"></span>
+        <span class="font-mono text-gold-400/80 text-[9px] tracking-[0.3em]">FINAL</span>
+      </div>
+      <div class="font-serif text-cream-50 text-[14.5px] leading-[1.7] mb-4">
+        準備好了，就一起<br/>看懂這條路。
+      </div>
+      <a href="#cta" data-drawer-hide="navDrawer" class="nav-cta-btn">
+        <span>免費領取指南</span>
+        <span class="nav-cta-arrow">→</span>
+      </a>
+    </div>
+    <p class="mt-5 font-mono text-[9.5px] tracking-[0.28em] text-cream-50/55 text-center">STARSHINE PATHWAY · 2026</p>
+  </div>
+</div>
+
+<!-- ================ PINNED TOP BAR (logo + menu) ================ -->
+<div id="topBar" class="top-bar">
+  <div class="top-bar-inner flex items-center justify-between px-5 sm:px-8 lg:px-16">
+    <a href="#top" class="flex items-center gap-2.5 sm:gap-3 text-cream-50 group">
+      <img src="images/logo-mark.png" alt="星耀 · 健康路徑計畫" class="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-md shadow-[0_2px_12px_rgba(0,0,0,0.3)]" />
+      <span class="font-serif text-cream-50 text-[13px] sm:text-[15px] lg:text-[17px] font-medium tracking-[0.14em] leading-none whitespace-nowrap">星耀 · 健康路徑計畫</span>
+    </a>
+    <button type="button" class="menu-pill group"
+            data-drawer-target="navDrawer" data-drawer-show="navDrawer" data-drawer-placement="right" aria-controls="navDrawer" aria-label="開啟選單">
+      <span class="menu-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </span>
+      <span class="menu-label">MENU</span>
+    </button>
+  </div>
+</div>
+
+<!-- ================ 01 HERO — full-bleed photo ================ -->
+<header id="top" class="hero relative w-full text-cream-50 overflow-hidden">
+  <!-- background photo -->
+  <div class="absolute inset-0 hero-photo"></div>
+
+  <!-- gradient overlays (mobile: bottom-up dark; desktop: left dark) -->
+  <div class="absolute inset-0 lg:hidden hero-overlay-mobile"></div>
+  <div class="absolute inset-0 hidden lg:block hero-overlay-desktop"></div>
+  <!-- subtle gold haze -->
+  <div class="absolute inset-0 pointer-events-none hero-gold-haze"></div>
+
+  <!-- content area -->
+  <div class="relative z-10 w-full flex items-end lg:items-center hero-stage">
+    <div class="w-full px-5 sm:px-8 lg:px-16 pb-12 sm:pb-16 lg:pb-0 lg:pt-0 max-w-wrap mx-auto">
+      <div class="max-w-full lg:max-w-[560px]">
+        <!-- eyebrow with underline -->
+        <div class="mb-5 sm:mb-6 lg:mb-7">
+          <span class="block font-sans text-[13px] sm:text-[14px] lg:text-[15px] text-cream-50/90 tracking-[0.06em] font-normal">給想多一個收入選擇的人</span>
+          <span class="block w-12 lg:w-14 h-px bg-gold-400 mt-2.5"></span>
+        </div>
+
+        <!-- headline -->
+        <h1 class="font-serif text-cream-50 mb-5 sm:mb-6 lg:mb-7 font-semibold hero-title">
+          想多一份收入，<br/>別讓風險都 自己扛。
+        </h1>
+
+        <!-- subhead -->
+        <p class="text-cream-50/85 mb-7 sm:mb-9 lg:mb-10 leading-[1.85] hero-subhead">
+          從日常健康需求開始，看懂一種<span class="text-gold-300">低負擔、可累積</span>的副業方式。
+        </p>
+
+        <!-- CTA -->
+        <a href="#cta" class="hero-cta hero-main-cta inline-flex w-full lg:w-auto items-center justify-center gap-3 bg-gold-300 hover:bg-gold-100 text-navy-800 rounded-full px-7 lg:px-9 transition-all active:scale-[0.99] shadow-[0_18px_40px_-18px_rgba(198,154,74,0.6)]">
+          <span>免費領取指南</span>
+          <span class="text-[18px]">→</span>
+        </a>
+
+        <!-- reassurance -->
+        <p class="mt-5 sm:mt-6 flex items-center justify-center lg:justify-start gap-2 text-[12.5px] sm:text-[13px] text-cream-50/80">
+          <svg class="w-3.5 h-3.5 text-gold-300 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2.5l8 3.5v6.2c0 4.8-3.4 8.6-8 9.8-4.6-1.2-8-5-8-9.8V6L12 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>先了解做法與風險，再決定適不適合你。</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- desktop scroll cue -->
+  <div class="hidden lg:flex absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 text-cream-50/72">
+    <span class="font-mono text-[10.5px] tracking-[0.25em]">SCROLL</span>
+    <span class="block w-px h-9 bg-gradient-to-b from-cream-50/55 to-transparent"></span>
+  </div>
+</header>
+
+<!-- ================ 02 PAIN POINTS ================ -->
+<section id="pain" class="bg-cream-50 relative overflow-hidden">
+  <!-- full-bleed photo bed: image spans both title + accordion -->
+  <div class="pain-bed reveal">
+    <img class="pain-bed-img" src="images/desk-receipts.png" alt="桌面上的記事本、收據與計算機 — 日常收支的真實場景" loading="lazy" />
+    <div class="pain-bed-overlay" aria-hidden="true"></div>
+
+    <div class="wrap pain-bed-inner">
+      <!-- title block -->
+      <div class="pain-bed-title">
+        <span class="pain-tag">
+          <span class="dot"></span>
+          CHAPTER 02 · 收入現實
+        </span>
+        <h2 class="pain-headline">
+          明明很努力，<br/>
+          卻不敢只靠<span class="text-gold-600">一份收入。</span>
+        </h2>
+        <div class="pain-sub">
+          <p>薪水追不上開銷？你不是不夠努力，<br/>
+          <p>而是需要一個<span class="u-line">低負擔</span>的<span class="u-line">收入配置</span>。</p>
+        </div>
+      </div>
+
+      <!-- scroll-driven accordion in soft frosted card -->
+      <div class="max-w-[860px] mx-auto acc-card">
+      <div class="acc-card-head">
+        <span class="lbl">你最近，是不是也這樣？</span>
+        <span class="meta">scroll ↓ to feel</span>
+      </div>
+      <div class="acc-list" id="painAcc">
+      <div class="acc-item is-active" data-acc>
+        <span class="acc-dot" aria-hidden="true"></span>
+        <span class="acc-num">01</span>
+        <div>
+          <h3 class="acc-title">薪水有上限，支出卻沒有</h3>
+          <div class="acc-body"><p>每天認真工作，但房貸、車貸、家庭支出，<br/>總是比加薪更快出現。</p></div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <span class="acc-dot" aria-hidden="true"></span>
+        <span class="acc-num">02</span>
+        <div>
+          <h3 class="acc-title">責任越多，越不能亂冒險</h3>
+          <div class="acc-body"><p>有家要顧、有長輩要照顧，<br/>也更不能把積蓄拿去賭一個未知機會。</p></div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <span class="acc-dot" aria-hidden="true"></span>
+        <span class="acc-num">03</span>
+        <div>
+          <h3 class="acc-title">時間被切得越來越碎</h3>
+          <div class="acc-body">
+            <p>不是不願意努力，而是下班後的精力，<br/>
+            <p>早已被<span class="u-line">家庭與責任</span>無形瓜分。</p>
+          </div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <span class="acc-dot" aria-hidden="true"></span>
+        <span class="acc-num">04</span>
+        <div>
+          <h3 class="acc-title">最怕的不是累，是沒有選擇</h3>
+          <div class="acc-body"><p>當收入來源只有一個，<br/>任何變動都可能讓生活變得被動。</p></div>
+        </div>
+      </div>
+      <div class="acc-item" data-acc>
+        <span class="acc-dot" aria-hidden="true"></span>
+        <span class="acc-num">05</span>
+        <div>
+          <h3 class="acc-title">你真正需要的，是多一個可評估的選項</h3>
+          <div class="acc-body"><p>不是立刻辭職，也不是衝動創業，<br/>而是先看懂一種低負擔開始的可能。</p></div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- /acc-card -->
+
+    <!-- closing pull-quote — integrated inside the photo bed -->
+    <div class="reveal pain-outro">
+      <span class="pq-mark" aria-hidden="true">“</span>
+      <div class="pq-text">
+        <p>
+          多一份收入選擇，不是為了<span class="text-ink-500">冒險</span>，<br/>
+          而是為了讓生活多一點 <span class="text-gold-600 font-medium">主動權</span>。
+        </p>
+        <div class="pq-meta">
+          <span class="ln"></span>
+          <span class="lbl">CHOICE · 選擇權</span>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <!-- /pain-bed-inner -->
+
+    <span class="pain-bed-cap">REALITY · 收支日常</span>
+  </div>
+  <!-- /pain-bed -->
+</section>
+
+<!-- ================ 03 副業選擇 — 評估互動 + 深藍收束 ================ -->
+
+
+
+
+<section class="ch03b">
+  <!-- full-bleed compass + waves background -->
+  <div class="ch03b-bg" aria-hidden="true"></div>
+
+  <!-- TOP -->
+  <div class="ch03b-top">
+    <div class="wrap">
+
+      <div class="sb-deck">
+        <div class="sb-left">
+
+          <div class="ch03b-head reveal">
+            <span class="ch03b-tag">
+              <span class="dot"></span>
+              CHAPTER 03 · 副業選擇
+            </span>
+            <h2 class="ch03b-h1">
+              副業很多，<br/>
+              但每一種，<br/>
+              都有要<span class="em">承擔的事</span>。
+            </h2>
+            <p class="ch03b-sub">
+              看清楚每一種選項，<br class="sm:hidden"/>
+              背後真正要扛的是什麼。
+            </p>
+          </div>
+
+          <!-- 6 compact pills (2 × 3) -->
+          <div class="sb-tickets reveal" role="tablist" aria-label="副業選項">
+            <button type="button" class="sb-ticket is-active" data-opt="1" role="tab" aria-selected="true">兼職</button>
+            <button type="button" class="sb-ticket" data-opt="2" role="tab" aria-selected="false">接案</button>
+            <button type="button" class="sb-ticket" data-opt="3" role="tab" aria-selected="false">電商 / 微商</button>
+            <button type="button" class="sb-ticket" data-opt="4" role="tab" aria-selected="false">加盟創業</button>
+            <button type="button" class="sb-ticket" data-opt="5" role="tab" aria-selected="false">自媒體</button>
+            <button type="button" class="sb-ticket" data-opt="6" role="tab" aria-selected="false">投資</button>
+          </div>
+
+        </div>
+
+        <div class="sb-right">
+          <!-- 4:5 cinema scene card -->
+          <div class="sb-scene reveal" id="sbScene" aria-live="polite">
+            <img class="sb-scene-img is-active" data-slot="a" src="images/side-01-parttime.png" alt="兼職的真實情境" />
+            <img class="sb-scene-img" data-slot="b" alt="" />
+
+            <!-- cream-gradient veil sits between image and text (no white card) -->
+            <div class="sb-scene-veil" aria-hidden="true"></div>
+
+            <div class="sb-scene-text">
+              <span class="sb-scene-num" data-scene="num">01</span>
+              <h3 class="sb-scene-name"><span data-scene="name">兼職</span></h3>
+              <span class="sb-scene-feel" data-scene="feel">看起來安全</span>
+
+              <p class="sb-scene-truth">
+                <span class="sb-but">其實，</span>
+                <span class="sb-truth-line" data-scene="truth">只是下班後再上一份班。</span>
+              </p>
+
+              <div class="sb-scene-risks">
+                <span data-scene="r1">時間被切走</span>
+                <span data-scene="r2">體力消耗</span>
+                <span data-scene="r3">不易累積</span>
+              </div>
+            </div>
+
+            <div class="sb-scene-progress" aria-hidden="true">
+              <div class="sb-scene-progress-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BRIDGE — deep navy block -->
+  <div class="ch03-bridge-block">
+    <svg class="ch03-bridge-leaf" viewBox="0 0 200 360" fill="none" aria-hidden="true">
+      <g stroke="#E6C68A" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.9">
+        <path d="M105 350 C 100 280, 96 200, 100 110 C 102 70, 108 40, 115 18" />
+        <path d="M104 290 C 130 280, 152 268, 172 248" />
+        <path d="M172 248 C 168 244, 162 240, 156 238" />
+        <path d="M150 244 C 168 232, 188 218, 194 196 C 178 196, 158 208, 150 224 Z" fill="rgba(230,198,138,0.18)" />
+        <path d="M101 215 C 124 200, 145 184, 162 158" />
+        <path d="M142 168 C 162 152, 180 138, 184 116 C 168 118, 148 132, 140 150 Z" fill="rgba(230,198,138,0.22)" />
+        <path d="M100 250 C 78 240, 58 226, 42 204" />
+        <path d="M55 218 C 42 208, 30 196, 26 180 C 38 180, 52 192, 58 206 Z" fill="rgba(230,198,138,0.15)" />
+        <path d="M103 145 C 122 130, 138 110, 148 84" />
+        <path d="M138 96 C 152 78, 162 60, 162 38 C 148 44, 134 60, 130 80 Z" fill="rgba(230,198,138,0.20)" />
+        <path d="M170 230 C 172 218, 176 208, 182 200" opacity="0.6" />
+        <path d="M154 158 C 158 144, 164 132, 172 124" opacity="0.6" />
+        <path d="M146 80 C 150 66, 154 54, 158 46" opacity="0.6" />
+      </g>
+    </svg>
+
+    <div class="wrap">
+      <div class="ch03-bridge reveal mx-auto">
+        <span class="kicker">接下來，看另一種切入點。</span>
+        <h3>
+          與其追逐一時熱門，<br/>
+          不如回到每天都有人<span class="em">需要</span>的市場。
+        </h3>
+
+        <div class="ch03-roman">
+          <div class="ch03-roman-row">
+            <span class="rn">i</span>
+            <div>
+              <div class="rn-ttl">不追風口</div>
+              <p class="rn-desc">避開容易退燒的熱門副業。</p>
+            </div>
+          </div>
+          <div class="ch03-roman-row">
+            <span class="rn">ii</span>
+            <div>
+              <div class="rn-ttl">回到日常需求</div>
+              <p class="rn-desc">從每個家庭都避不開的日常開始。</p>
+            </div>
+          </div>
+          <div class="ch03-roman-row">
+            <span class="rn">iii</span>
+            <div>
+              <div class="rn-ttl">低負擔切入</div>
+              <p class="rn-desc">先用務實方式，評估一種可累積的收入可能。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ch03-next-inline">
+          <span class="ln"></span>
+          <span class="lbl">NEXT · 04 健康市場日常需求</span>
+          <span class="ln"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ================ 04 健康市場日常需求 · 通訊錄 ================ -->
+
+
+
+
+<section id="market" class="ch04" data-screen-label="04 健康市場">
+
+  <div class="wrap ch04-body">
+
+    <!-- HEAD -->
+    <div class="ch04-intro reveal">
+      <span class="ch04-tag">
+        <span class="dot"></span>
+        CHAPTER 04 · 健康市場
+      </span>
+      <h2 class="ch04-h1">
+        健康不是突然出現，<br/>
+        而是藏在<span class="em"><br/>
+        每個家庭的日常</span>。
+      </h2>
+      <p class="ch04-lead">
+        點開你的通訊錄，<br/>
+        你身邊一定有人正在面對這些狀況：
+      </p>
+    </div>
+
+    <!-- INTERACTIVE STAGE -->
+    <div class="dhm reveal">
+      <div class="dhm-stage" id="dhmStage">
+        <div class="dhm-photo" id="dhmPhoto">
+          <img class="dhm-img is-active" id="dhmImg" data-slot="a" src="images/need-01-body.png" alt="體態與代謝 — 上班族晚上面對外食與帳單" />
+          <img class="dhm-img" data-slot="b" alt="" />
+        </div>
+        <div class="dhm-scrim"></div>
+        <div class="dhm-overlay">
+          <div class="dhm-cat" id="dhmCat">01 · 體態與代謝</div>
+          <h3 class="dhm-headline" id="dhmTags">外食 / 澱粉 / 代謝</h3>
+          <p class="dhm-desc" id="dhmDesc">戒不掉外食與精緻澱粉，肚子越來越難消，體檢數字也開始提醒自己該重視。</p>
+        </div>
+      </div>
+
+      <!-- prompt -->
+      <div class="dhm-prompt">
+        <span class="ln"></span>
+        <span class="di">✦</span>
+        <span class="txt">選一個你最有感的日常需求</span>
+        <span class="di">✦</span>
+        <span class="ln"></span>
+      </div>
+
+      <!-- selector pills -->
+      <div class="dhm-grid" id="dhmGrid">
+        <button class="dhm-pill is-active" data-key="1"><span class="dhm-dot"></span>體態</button>
+        <button class="dhm-pill" data-key="2"><span class="dhm-dot"></span>腸胃</button>
+        <button class="dhm-pill" data-key="3"><span class="dhm-dot"></span>循環</button>
+        <button class="dhm-pill" data-key="4"><span class="dhm-dot"></span>睡眠</button>
+        <button class="dhm-pill" data-key="5"><span class="dhm-dot"></span>防護</button>
+        <button class="dhm-pill" data-key="6"><span class="dhm-dot"></span>護眼</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLOSING — quiet consultant note, no top divider -->
+  <div class="ch04-close">
+    <div class="wrap">
+      <div class="ch04-close-inner reveal">
+        <span class="ch04-close-mark" aria-hidden="true"></span>
+        <h3>
+          真正能<span class="gold">長期累積</span>的事業，<br/>
+          往往就藏在這些<span class="gold">生活痛點</span>裡。
+        </h3>
+
+        <a href="#trust" class="ch04-next-inline">
+          <span class="ln"></span>
+          <span class="lbl">NEXT · 05 看懂健康市場如何變成收入<span class="arrow">→</span></span>
+          <span class="ln"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ================ 05 星耀合作優勢 · 顧慮解鎖 ================ -->
+<section id="trust" class="ch05">
+
+  <!-- HEAD — full-bleed photo bed with title + subtitle -->
+  <div class="ch05-head reveal">
+    <div class="ch05-head-bg" aria-hidden="true"></div>
+    <span class="ch05-tag">
+      <span class="dot"></span>
+      CHAPTER 05 · 星耀合作優勢
+    </span>
+    <h2 class="ch05-h1">
+      看見需求的人，<br/>
+      就看見了<span class="em">機會</span>。
+    </h2>
+    <p class="ch05-sub">
+      產品、後勤、信任、陪跑，<br/>
+      星耀已經先替你搭好。
+    </p>
+  </div>
+
+  <div class="wrap">
+    <!-- on desktop this becomes two-column -->
+    <div class="ch05-grid">
+      <!-- LEFT: quote -->
+      <div>
+
+        <!-- bridge — editorial banner -->
+        <div class="ch05-quote reveal">
+          <span class="l1">不用從零摸索，</span>
+          <span class="l2">你擔心的，我們一個一個<span class="em">接住</span>。</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: accordion -->
+      <div>
+        <div class="ch05-acc reveal" id="concernAcc">
+          <!-- 01 (default open) -->
+          <article class="concern-card is-open" data-card="0">
+            <button type="button" class="concern-head" aria-expanded="true">
+              <span class="concern-num">01</span>
+              <span class="concern-textcol">
+                <span class="concern-eyebrow">你可能擔心</span>
+                <span class="concern-worry">產品不夠成熟</span>
+                <span class="concern-hint">
+                  <span>星耀提供</span><span class="sep">｜</span><span>有成熟產品</span>
+                </span>
+              </span>
+              <span class="concern-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="concern-body">
+              <div class="concern-body-inner">
+                <div class="concern-body-pad">
+                  <div class="concern-divider">
+                    <span class="ln"></span>
+                    <span class="arrow">▸</span>
+                    <span class="lbl">星耀提供</span>
+                    <span class="ln"></span>
+                  </div>
+                  <p class="concern-solve">有成熟產品，不必從零試錯</p>
+                  <p class="concern-desc">
+                    你不必自己找工廠、測配方、賭市場反應。<br/>
+                    星耀承接 30 年健康市場經驗，<br/>
+                    讓你一開始就站在更成熟的產品基礎上。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="concern-card" data-card="1">
+            <button type="button" class="concern-head" aria-expanded="false">
+              <span class="concern-num">02</span>
+              <span class="concern-textcol">
+                <span class="concern-eyebrow">你可能擔心</span>
+                <span class="concern-worry">成本壓力太重</span>
+                <span class="concern-hint">
+                  <span>星耀提供</span><span class="sep">｜</span><span>有平台後勤</span>
+                </span>
+              </span>
+              <span class="concern-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="concern-body">
+              <div class="concern-body-inner">
+                <div class="concern-body-pad">
+                  <div class="concern-divider">
+                    <span class="ln"></span>
+                    <span class="arrow">▸</span>
+                    <span class="lbl">星耀提供</span>
+                    <span class="ln"></span>
+                  </div>
+                  <p class="concern-solve">有平台後勤，不必獨自扛起一切</p>
+                  <p class="concern-desc">
+                    你不用囤貨、不用一次壓大筆成本。<br/>
+                    出貨、物流、後勤、客服流程，<br/>
+                    都由星耀的平台系統承接。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="concern-card" data-card="2">
+            <button type="button" class="concern-head" aria-expanded="false">
+              <span class="concern-num">03</span>
+              <span class="concern-textcol">
+                <span class="concern-eyebrow">你可能擔心</span>
+                <span class="concern-worry">成交變成人情壓力</span>
+                <span class="concern-hint">
+                  <span>星耀提供</span><span class="sep">｜</span><span>信任機制</span>
+                </span>
+              </span>
+              <span class="concern-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="concern-body">
+              <div class="concern-body-inner">
+                <div class="concern-body-pad">
+                  <div class="concern-divider">
+                    <span class="ln"></span>
+                    <span class="arrow">▸</span>
+                    <span class="lbl">星耀提供</span>
+                    <span class="ln"></span>
+                  </div>
+                  <p class="concern-solve">用信任機制，取代靠交情成交</p>
+                  <p class="concern-desc">
+                    你不用費盡心思去說服，<br/>
+                    只要拿出數據與成效，<br/>
+                    對方的切身需求，自然被你解決。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="concern-card" data-card="3">
+            <button type="button" class="concern-head" aria-expanded="false">
+              <span class="concern-num">04</span>
+              <span class="concern-textcol">
+                <span class="concern-eyebrow">你可能擔心</span>
+                <span class="concern-worry">沒有人帶你開始</span>
+                <span class="concern-hint">
+                  <span>星耀提供</span><span class="sep">｜</span><span>陪跑系統</span>
+                </span>
+              </span>
+              <span class="concern-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="concern-body">
+              <div class="concern-body-inner">
+                <div class="concern-body-pad">
+                  <div class="concern-divider">
+                    <span class="ln"></span>
+                    <span class="arrow">▸</span>
+                    <span class="lbl">星耀提供</span>
+                    <span class="ln"></span>
+                  </div>
+                  <p class="concern-solve">有陪跑系統，一步一步把你帶上路</p>
+                  <p class="concern-desc">
+                    你不是被丟進市場自己摸索。<br/>
+                    從入門、教材、流程到實戰陪伴，<br/>
+                    都有經驗夥伴一路接住你。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING navy strip -->
+  <div class="ch05-close">
+    <div class="wrap">
+      <div class="ch05-close-inner reveal">
+        <div class="ch05-close-orn">
+          <span class="ln"></span><span class="star">✦</span><span class="ln"></span>
+        </div>
+        <h3>
+          <span class="gold">不是冒險</span>，<br/>
+          而是用一套已經準備好的系統，<br/>
+          開始驗證<span class="gold">自己的可能</span>。
+        </h3>
+        <div class="ch05-close-next">
+          <span class="ln"></span>
+          <span class="lbl">NEXT｜真實成功案例<span class="arrow">→</span></span>
+          <span class="ln"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ================ 06 真實案例 ================ -->
+
+
+<section id="cases" class="ch06" data-screen-label="06 真實案例">
+
+  <article class="ch06-stage" id="ch06-case-1">
+    <div class="ch06-photo">
+      <img class="ch06-photo-img ch06-photo-yuan" src="images/case-01-yuan.png" alt="袁先生 — 與家人一起重新檢視收入規劃" loading="lazy" />
+      <div class="ch06-photo-overlay" aria-hidden="true"></div>
+      <div class="ch06-photo-content reveal">
+        <span class="ch06-tag" aria-hidden="true">
+          <span class="dot"></span>
+          CHAPTER 06 · 真實案例
+        </span>
+        <h2 class="ch06-h1">
+          拼命加班 80 小時<br/>
+          卻給不起家庭一份<span class="em">安心</span>
+        </h2>        <div class="ch06-progress" aria-hidden="true">
+          <span class="ch06-progress-dots"><span class="dot is-active"></span><span class="dot"></span><span class="dot"></span></span>
+          <span class="ch06-progress-label">STORY 01 OF 03</span>
+        </div>
+      </div>
+    </div>
+
+    <article class="ch06-card reveal">
+      <header class="ch06-card-head">
+        <span class="ch06-case-label">CASE 01</span>
+        <span class="ch06-case-counter">
+          <span>01</span><span class="slash">/</span><span class="total">03</span>
+        </span>
+      </header>
+
+      <h3 class="ch06-bio">
+        <span class="ch06-bio-name">袁先生，30 歲</span>
+        <span class="ch06-bio-role">｜傳產工程師</span>
+      </h3>
+      <div class="ch06-tags" aria-label="案例標籤">
+        <span>#每月加班80小時</span>
+        <span>#第二收入線</span>
+      </div>
+
+      <div class="ch06-story">
+        <p class="ch06-story-lead">孩子出生後，他才發現：自己已經很努力了，但家庭還是不夠安心。</p>
+        <p>以前的他每天早八晚八，一個月加班 80 小時，月薪接近 6 萬。</p>
+        <p>剛結婚時覺得夠用，直到孩子出生、太太全職照顧家庭，他才真正感受到一份薪水的壓力。</p>
+        <p>他沒有一開始就離職，而是先用下班後的時間，了解一個不用先壓大成本的健康市場方向。</p>
+        <p>後來他發現，收入不一定只能靠更多加班換來。</p>
+      </div>
+
+      <blockquote class="ch06-quote">
+        <span class="ch06-quote-label">一句話</span>
+        <p>他不是不努力，<br/>只是終於找到一條不只靠工時的收入路。</p>
+      </blockquote>
+
+      <div class="ch06-results">
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">5 萬多</span>
+          <span class="ch06-stat-label">原本月薪</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">80 小時</span>
+          <span class="ch06-stat-label">轉型前每月加班</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">3 萬+</span>
+          <span class="ch06-stat-label">兼職後每月增加收入</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">210 萬+</span>
+          <span class="ch06-stat-label">17 個月後</span>
+        </div>
+      </div>
+
+      <a class="ch06-next-case" href="#ch06-case-2">
+        <span class="ch06-next-eyebrow">
+          <span class="line"></span>
+          NEXT · 下一個案例
+        </span>
+        <div class="ch06-next-body">
+          <div class="ch06-next-pic">
+            <img src="images/case-02-yu.png" alt="游沛儀｜美髮工作室老闆" loading="lazy" />
+          </div>
+          <div class="ch06-next-text">
+            <div class="ch06-next-name">美髮老闆娘</div>
+          </div>
+          <span class="ch06-next-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </article>
+  </article>
+
+  <article class="ch06-stage" id="ch06-case-2">
+    <div class="ch06-photo">
+      <img class="ch06-photo-img ch06-photo-yu" src="images/case-02-yu.png" alt="游沛儀 — 在工作之外靜靜思考下一條路" loading="lazy" />
+      <div class="ch06-photo-overlay" aria-hidden="true"></div>
+      <div class="ch06-photo-content reveal">
+        <span class="ch06-tag" aria-hidden="true">
+          <span class="dot"></span>
+          CHAPTER 06 · 真實案例
+        </span>
+        <h2 class="ch06-h1">
+          做了 37 年美髮<br/>
+          最怕手停下來<br/><span class="em">收入也停了</span>
+        </h2>        <div class="ch06-progress" aria-hidden="true">
+          <span class="ch06-progress-dots"><span class="dot"></span><span class="dot is-active"></span><span class="dot"></span></span>
+          <span class="ch06-progress-label">STORY 02 OF 03</span>
+        </div>
+      </div>
+    </div>
+
+    <article class="ch06-card reveal">
+      <header class="ch06-card-head">
+        <span class="ch06-case-label">CASE 02</span>
+        <span class="ch06-case-counter">
+          <span>02</span><span class="slash">/</span><span class="total">03</span>
+        </span>
+      </header>
+
+      <h3 class="ch06-bio">
+        <span class="ch06-bio-name">游沛儀，53 歲</span>
+        <span class="ch06-bio-role">｜美髮工作室老闆</span>
+      </h3>
+      <div class="ch06-tags" aria-label="案例標籤">
+        <span>#37年美髮經驗</span>
+        <span>#中年斜槓</span>
+      </div>
+
+      <div class="ch06-story">
+        <p class="ch06-story-lead">做了 37 年美髮，她最怕的不是累，是「只要停下來，收入也停下來」。</p>
+        <p>她靠雙手、技術和客人信任，撐起自己的工作室。但年紀上來後，她開始替未來多想一步。</p>
+        <p>後來，她從自己的狀態改變開始。客人看見她不一樣了，開始主動問：「你最近怎麼調整的？」</p>
+        <p>這個自然的入口，讓她把 37 年累積的信任，延伸成新的健康市場收入線。</p>
+      </div>
+
+      <blockquote class="ch06-quote">
+        <span class="ch06-quote-label">一句話</span>
+        <p>她不是重來一次，<br/>而是讓原本的信任，長出第二種可能。</p>
+      </blockquote>
+
+      <div class="ch06-results">
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">37 年</span>
+          <span class="ch06-stat-label">美髮經驗</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">8 年</span>
+          <span class="ch06-stat-label">斜槓健康市場</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">2 萬+</span>
+          <span class="ch06-stat-label">第一個月額外收入</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">950 萬+</span>
+          <span class="ch06-stat-label">累積淨利</span>
+        </div>
+      </div>
+
+      <a class="ch06-next-case" href="#ch06-case-3">
+        <span class="ch06-next-eyebrow">
+          <span class="line"></span>
+          NEXT · 下一個案例
+        </span>
+        <div class="ch06-next-body">
+          <div class="ch06-next-pic">
+            <img src="images/case-03-yang.png" alt="林小姐｜全職媽媽" loading="lazy" />
+          </div>
+          <div class="ch06-next-text">
+            <div class="ch06-next-name">全職媽媽</div>
+          </div>
+          <span class="ch06-next-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </article>
+  </article>
+
+  <article class="ch06-stage" id="ch06-case-3">
+    <div class="ch06-photo">
+      <img class="ch06-photo-img ch06-photo-yang" src="images/case-03-yang.png" alt="林小姐 — 在家中悠閒翻看資訊，重新規劃自己的時間" loading="lazy" />
+      <div class="ch06-photo-overlay" aria-hidden="true"></div>
+      <div class="ch06-photo-content reveal">
+        <span class="ch06-tag" aria-hidden="true">
+          <span class="dot"></span>
+          CHAPTER 06 · 真實案例
+        </span>
+        <h2 class="ch06-h1">
+          從 0 收入起步<br/>
+          她不再讓現實<br/>限制<span class="em">給孩子的愛</span>
+        </h2>        <div class="ch06-progress" aria-hidden="true">
+          <span class="ch06-progress-dots"><span class="dot"></span><span class="dot"></span><span class="dot is-active"></span></span>
+          <span class="ch06-progress-label">STORY 03 OF 03</span>
+        </div>
+      </div>
+    </div>
+
+    <article class="ch06-card reveal">
+      <header class="ch06-card-head">
+        <span class="ch06-case-label">CASE 03</span>
+        <span class="ch06-case-counter">
+          <span>03</span><span class="slash">/</span><span class="total">03</span>
+        </span>
+      </header>
+
+      <h3 class="ch06-bio">
+        <span class="ch06-bio-name">林小姐，42 歲</span>
+        <span class="ch06-bio-role">｜全職媽媽</span>
+      </h3>
+      <div class="ch06-tags" aria-label="案例標籤">
+        <span>#家庭照顧者</span>
+        <span>#從零收入起步</span>
+      </div>
+
+      <div class="ch06-story">
+        <p class="ch06-story-lead">她曾經最怕的，是想給孩子多一點，卻總要先想錢夠不夠。</p>
+        <p>以前的她，把時間都放在家庭。但沒有自己的收入，很多小事都會變成壓力。</p>
+        <p>帶孩子出門、安排生活、想替家裡多做一點，都會先被現實拉住。</p>
+        <p>後來，她從自己的狀態改變和家庭健康需求開始，慢慢讓身邊有相同困擾的人願意了解。</p>
+        <p>她沒有離開家庭，而是在家庭之外，重新建立自己的選擇權。</p>
+      </div>
+
+      <blockquote class="ch06-quote">
+        <span class="ch06-quote-label">一句話</span>
+        <p>她不是變成另一個人，<br/>而是重新看見自己也能替家庭創造更多可能。</p>
+      </blockquote>
+
+      <div class="ch06-results">
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">0 收入</span>
+          <span class="ch06-stat-label">從家庭照顧者開始</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">7 位數</span>
+          <span class="ch06-stat-label">累積淨利</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">2 間</span>
+          <span class="ch06-stat-label">投資房產</span>
+        </div>
+        <div class="ch06-stat">
+          <span class="ch06-stat-value">1 台</span>
+          <span class="ch06-stat-label">保時捷</span>
+        </div>
+      </div>
+
+      <p class="ch06-disclaimer">
+        以上為個人經驗分享，實際成果會因投入時間、學習狀況與執行方式而不同，並非收入保證。
+      </p>
+
+      <div class="ch06-end-mark" aria-hidden="true">
+        <span class="ln"></span>
+        <span class="star">✦ END · 共 3 篇</span>
+        <span class="ln"></span>
+      </div>
+    </article>
+  </article>
+</section>
+
+<!-- ================ 07 領取指南與 CTA ================ -->
+
+
+<section id="cta" class="ch07" data-screen-label="07 領取指南">
+  <!-- HERO with family-breakfast photo -->
+  <div class="ch07-hero" id="guide">
+    <img class="ch07-hero-img"
+         src="images/guide-family-breakfast.png"
+         alt="爸爸和小女兒在餐桌前一起吃健康早餐，自然光從窗邊灑入"
+         loading="lazy" />
+    <div class="ch07-hero-overlay" aria-hidden="true"></div>
+    <div class="ch07-hero-content reveal">
+      <span class="ch07-tag" aria-hidden="true">
+        <span class="dot"></span>
+        CHAPTER 07 · 領取指南
+      </span>
+      <h2 class="ch07-h1">與其一人扛風險，<br/>不如借套系統<span class="em">贏回選擇權</span></h2>
+      <p class="ch07-sub">
+        先看懂做法，再決定適不適合你。
+      </p>
+    </div>
+  </div>
+
+  <!-- GUIDE COVER — physical, floating -->
+  <div class="ch07-cover-wrap reveal">
+    <div class="ch07-cover">
+      <img src="images/guide-cover.png" alt="《健康副業指南》封面：先看懂做法與風險，再決定適不適合你" loading="lazy" />
+    </div>
+  </div>
+
+  <!-- 3 KEY POINTS -->
+  <div class="ch07-keypoints reveal">
+    <span class="ch07-keypoints-eyebrow">這份指南會告訴你</span>
+    <div class="ch07-keypoints-list">
+      <div class="ch07-keypoint">
+        <span class="num">01</span>
+        <span class="text">看懂健康市場為什麼有長期需求</span>
+      </div>
+      <div class="ch07-keypoint">
+        <span class="num">02</span>
+        <span class="text">了解新手如何降低第一次分享壓力</span>
+      </div>
+      <div class="ch07-keypoint">
+        <span class="num">03</span>
+        <span class="text">判斷這個方式適不適合你</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="ch07-form-wrap reveal">
+    <form id="leadForm" class="ch07-form-card">
+      <div id="formFields">
+        <div class="ch07-form-head">
+          <h3 class="ch07-form-title">免費領取指南</h3>
+          <p class="ch07-form-desc">我們會透過官方 LINE 傳送完整內容給你。</p>
+        </div>
+
+        <div class="ch07-release">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M12 2.5l8 3.5v6.2c0 4.8-3.4 8.6-8 9.8-4.6-1.2-8-5-8-9.8V6L12 2.5z" stroke-linejoin="round"/>
+            <path d="M9 12.5l2.2 2.2L15.5 10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p>留下資料只是為了傳送指南，不代表你要立刻開始。</p>
+        </div>
+
+        <div class="ch07-field">
+          <label>姓名<span class="req">*</span></label>
+          <input required name="name" type="text" placeholder="請輸入您的姓名" />
+        </div>
+        <div class="ch07-field">
+          <label>手機電話<span class="req">*</span></label>
+          <input required name="phone" type="tel" inputmode="tel" placeholder="09xx-xxx-xxx" />
+        </div>
+        <div class="ch07-field">
+          <label>LINE ID（選填）</label>
+          <input name="line" type="text" placeholder="方便我們傳送指南" />
+        </div>
+        <div class="ch07-field">
+          <label>你目前最想了解的是？<span class="req">*</span></label>
+          <select required name="interest">
+            <option value="">請選擇</option>
+            <option>看懂健康市場長期需求</option>
+            <option>了解新手如何降低分享壓力</option>
+            <option>判斷這個方式適不適合我</option>
+            <option>都想了解</option>
+          </select>
+        </div>
+
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+
+        <button type="submit" class="ch07-submit">
+          送出資料，前往 LINE 領取指南
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>
+
+        <p class="ch07-reassure">
+          送出後請至您的 LINE 收取訊息。資料僅作為指南傳送與後續聯繫使用。
+        </p>
+      </div>
+
+      <div id="formSuccess" class="hidden ch07-success">
+        <div class="ch07-success-mark" aria-hidden="true">✓</div>
+        <h3>已收到您的資料</h3>
+        <p>我們會盡快透過官方 LINE 傳送《健康副業指南》給您。</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer class="bg-navy-900 text-cream-50/60 py-12 sm:py-16 pb-28 sm:pb-16">
+  <div class="wrap">
+    <div class="grid md:grid-cols-[1.5fr_1fr_1fr] gap-8 sm:gap-10 pb-8 sm:pb-10 mb-8 sm:mb-10 border-b border-cream-50/10">
+      <div class="flex items-start gap-4">
+        <img src="images/logo-mark.png" alt="星耀 · 健康路徑計畫" class="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-md" />
+        <div>
+          <div class="font-serif text-cream-50 text-[17px] sm:text-[18px] tracking-[0.1em]">星耀 · 健康路徑計畫</div>
+          <div class="font-display italic text-gold-400 text-[10.5px] sm:text-[11px] tracking-[0.35em] mt-1">STARSHINE GROUP</div>
+          <p class="text-cream-50/50 text-[12.5px] sm:text-[13px] mt-3 leading-[1.85] max-w-[280px]">
+            先看懂，再決定，<br/>
+            走一條更安心的健康收入路徑。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-cream-50 text-[12px] sm:text-[12.5px] tracking-[0.15em] font-medium mb-4 sm:mb-5">SITE MAP</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#pain" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">副業痛點</a></li>
+          <li><a href="#market" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">健康市場</a></li>
+          <li><a href="#trust" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">信任機制</a></li>
+          <li><a href="#cases" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">案例分享</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-cream-50 text-[12px] sm:text-[12.5px] tracking-[0.15em] font-medium mb-4 sm:mb-5">CONTACT</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#cta" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">領取指南</a></li>
+          <li><a href="#" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">官方 LINE</a></li>
+          <li><a href="#" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">隱私權政策</a></li>
+          <li><a href="#" class="text-[13px] sm:text-[13.5px] text-cream-50/72 hover:text-gold-400 transition-colors">免責聲明</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2.5 text-[11.5px] sm:text-[12px] text-cream-50/40 tracking-wide">
+      <div>© 2026 Starshine Group. All rights reserved.</div>
+      <div class="font-mono">星耀健康路徑計畫 · v.2</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================ FLOATING CTA — bottom right ================ -->
+<div id="bottomCta" class="bottom-cta fixed z-40 lg:hidden">
+  <a href="#cta"
+     class="cta-float group inline-flex items-center gap-2.5 bg-gold-500 hover:bg-gold-400 active:scale-[0.97] text-navy-800 transition-all">
+    <span class="cta-float-text font-serif font-medium whitespace-nowrap">免費領取指南</span>
+    <span class="cta-float-arrow">→</span>
+  </a>
+</div>
+
+<!-- ================ JS ================ -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script src="js/compare.js"></script>
+<script src="js/contacts.js"></script>
+<script src="js/concern-acc.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
