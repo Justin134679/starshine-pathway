@@ -335,6 +335,38 @@
   }
   @media (min-width:768px) { .ch03-roman-row .rn-desc { font-size: 14.5px; } }
 
+  /* Closing transition — soft cream paragraph between list and NEXT */
+  .ch03-bridge-outro {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(212,172,99,0.18);
+    font-family: "Noto Sans TC", sans-serif;
+    color: rgba(241,238,230,0.92);
+    font-size: 15px;
+    line-height: 1.85;
+    letter-spacing: 0.02em;
+    text-wrap: pretty;
+    word-break: keep-all;
+  }
+  .ch03-bridge-outro .em {
+    color: #E6C68A;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+  .ch03-bridge-outro .em::after {
+    content: "";
+    position: absolute;
+    left: 0.05em;
+    right: 0.05em;
+    bottom: -3px;
+    height: 1px;
+    background: linear-gradient(to right, rgba(212,172,99,0.7), rgba(212,172,99,0.15));
+  }
+  @media (min-width:768px) {
+    .ch03-bridge-outro { margin-top: 56px; padding-top: 32px; font-size: 16px; line-height: 1.9; }
+  }
+
   /* NEXT label — centered inline within the navy bridge block */
   .ch03-next-inline {
     display: flex;
