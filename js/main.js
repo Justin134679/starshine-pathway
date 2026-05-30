@@ -65,10 +65,21 @@
     chip.addEventListener('click', () => chip.classList.toggle('active'));
   });
 
+  // Chapter 06 mobile story expand/collapse
+  document.querySelectorAll('.ch06-story-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const story = btn.closest('.ch06-story');
+      if (!story) return;
+      const isOpen = story.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
   // form submit
   const form = document.getElementById('leadForm');
   if (form) {
     const submitBtn = form.querySelector('.ch07-submit');
+    const copyPhoneBtn = form.querySelector('[data-copy-phone-to-line]');
     const submitLabel = submitBtn ? submitBtn.innerHTML : '';
     let error = form.querySelector('#formError');
 
@@ -92,6 +103,16 @@
       const field = form.elements.namedItem(name);
       return field && typeof field.value === 'string' ? field.value.trim() : '';
     };
+
+    if (copyPhoneBtn) {
+      copyPhoneBtn.addEventListener('click', () => {
+        const phone = form.elements.namedItem('phone');
+        const line = form.elements.namedItem('line');
+        if (!phone || !line || typeof phone.value !== 'string') return;
+        line.value = phone.value.trim();
+        line.focus();
+      });
+    }
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
