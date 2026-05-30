@@ -110,6 +110,10 @@
       };
 
       if (!endpoint) {
+        if (window.location.protocol === 'file:') {
+          showSuccess();
+          return;
+        }
         alert('表單尚未設定，請聯繫管理員。');
         return;
       }
