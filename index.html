@@ -41,6 +41,10 @@
 <style type="text/tailwindcss">
   @layer base {
     html { scroll-behavior: smooth; }
+    /* iOS momentum scroll + smooth scroll often jitters full-bleed hero photos */
+    @media (hover: none) and (pointer: coarse) {
+      html { scroll-behavior: auto; }
+    }
     body {
       @apply font-sans bg-cream-50 text-ink-900 antialiased leading-relaxed;
       /* room for sticky mobile CTA bar */
@@ -196,8 +200,16 @@
 
 <!-- ================ 01 HERO — full-bleed photo ================ -->
 <header id="top" class="hero relative w-full text-cream-50 overflow-hidden">
-  <!-- background photo -->
-  <div class="absolute inset-0 hero-photo"></div>
+  <!-- background photo (img avoids iOS background repaint jitter on scroll) -->
+  <img
+    class="hero-photo"
+    src="images/hero-desk.jpg"
+    alt=""
+    width="1920"
+    height="1280"
+    decoding="async"
+    fetchpriority="high"
+  />
 
   <!-- gradient overlays (mobile: bottom-up dark; desktop: left dark) -->
   <div class="absolute inset-0 lg:hidden hero-overlay-mobile"></div>
