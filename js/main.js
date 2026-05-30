@@ -70,26 +70,42 @@
   if (form) {
     const submitBtn = form.querySelector('.ch07-submit');
     const submitLabel = submitBtn ? submitBtn.innerHTML : '';
+    let error = form.querySelector('#formError');
+
+    const showError = (message) => {
+      if (!error) {
+        error = document.createElement('p');
+        error.id = 'formError';
+        error.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center';
+        if (submitBtn) submitBtn.insertAdjacentElement('afterend', error);
+        else form.appendChild(error);
+      }
+      error.textContent = message || '送出失敗，請稍後再試。';
+    };
 
     const showSuccess = () => {
       document.getElementById('formFields').classList.add('hidden');
       document.getElementById('formSuccess').classList.remove('hidden');
     };
 
-    form.addEventListener('submit', (e) => {
+    const fieldValue = (name) => {
+      const field = form.elements.namedItem(name);
+      return field && typeof field.value === 'string' ? field.value.trim() : '';
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const cfg = window.STARSHINE_CONFIG || {};
       const endpoint = cfg.formEndpoint || '';
       const payload = {
-        token: cfg.formToken || '',
-        name: form.name.value.trim(),
-        phone: form.phone.value.trim(),
-        lineId: form.line.value.trim(),
-        interest: form.interest.value,
+        name: fieldValue('name'),
+        phone: fieldValue('phone'),
+        lineId: fieldValue('line'),
+        interest: fieldValue('interest'),
         source: cfg.formSource || 'starshine-pathway-cta',
         submittedAt: new Date().toISOString(),
-        website: form.website ? form.website.value : '',
+        website: fieldValue('website'),
         userAgent: navigator.userAgent,
       };
 
@@ -102,29 +118,28 @@
         submitBtn.disabled = true;
         submitBtn.textContent = '送出中...';
       }
+      if (error) error.textContent = '';
 
-      fetch(endpoint, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-      })
-        .then(showSuccess)
-        .catch(() => {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = submitLabel;
-          }
-          let error = form.querySelector('#formError');
-          if (!error) {
-            error = document.createElement('p');
-            error.id = 'formError';
-            error.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;text-align:center';
-            error.textContent = '送出失敗，請確認網路連線後再試一次。';
-            if (submitBtn) submitBtn.insertAdjacentElement('afterend', error);
-            else form.appendChild(error);
-          }
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.ok !== true) {
+          throw new Error(result.message || '送出失敗，請稍後再試。');
+        }
+
+        showSuccess();
+      } catch (err) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = submitLabel;
+        }
+        showError(err.message || '送出失敗，請確認網路連線後再試一次。');
+      }
     });
   }
 

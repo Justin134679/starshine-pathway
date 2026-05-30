@@ -1,5 +1,5 @@
 /**
- * Netlify build 時從環境變數寫入 config.runtime.js（不提交密鑰到 Git）。
+ * Netlify build 時確認環境變數存在，並寫入前端使用的 API 位置。
  * 必要環境變數：APPS_SCRIPT_WEB_APP_URL、FORM_TOKEN
  *
  * 本機測試（專案根目錄）：
@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const url   = process.env.APPS_SCRIPT_WEB_APP_URL || '';
+const url = process.env.APPS_SCRIPT_WEB_APP_URL || '';
 const token = process.env.FORM_TOKEN || '';
 
 if (!url || !token) {
@@ -22,8 +22,7 @@ if (!url || !token) {
 const runtimeBody =
   '(function () {\n' +
   '  window.STARSHINE_CONFIG = window.STARSHINE_CONFIG || {};\n' +
-  '  window.STARSHINE_CONFIG.formEndpoint = ' + JSON.stringify(url)   + ';\n' +
-  '  window.STARSHINE_CONFIG.formToken    = ' + JSON.stringify(token) + ';\n' +
+  '  window.STARSHINE_CONFIG.formEndpoint = ' + JSON.stringify('/api/lead-form') + ';\n' +
   '})();\n';
 
 const outPath = path.join(__dirname, 'config.runtime.js');

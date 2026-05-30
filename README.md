@@ -2,7 +2,7 @@
 
 > 先看懂，再決定，走一條更安心的健康收入路徑。
 
-靜態落地頁，部署於 Netlify，表單資料透過 Google Apps Script 寫入 Google 試算表。
+靜態落地頁，部署於 Netlify，表單資料經由 Netlify Function 轉送到 Google Apps Script，再寫入 Google 試算表。
 
 ---
 
@@ -33,8 +33,9 @@ project/
 │   └── concern-acc.js                # ch05 疑慮 accordion
 │
 ├── images/                           # 頁面圖片素材
+├── netlify/functions/lead-form.mjs   # 表單中間層：轉送到 Google Apps Script
 ├── config.public.js                  # 公開預設設定（進 Git）
-├── config.runtime.js                 # Build 時產生的密鑰設定（不進 Git）
+├── config.runtime.js                 # Build 時產生的前端 API 設定（不進 Git）
 ├── inject-env.mjs                    # Netlify build script
 ├── netlify.toml                      # Netlify 建置設定
 ├── google_apps_script_lead_form.gs   # Google Apps Script 後端程式碼
@@ -62,7 +63,10 @@ project/
 ```
 使用者填表單（index.html）
     │
-    │  fetch POST（no-cors, text/plain）
+    │  fetch POST（同站 /api/lead-form）
+    ▼
+Netlify Function
+    │  加上 FORM_TOKEN，轉送到 Apps Script
     ▼
 Google Apps Script Web App
     │  驗證 token、honeypot、必填欄位、時間戳記、rate limit
@@ -82,16 +86,17 @@ Netlify Dashboard
        │  git push → Netlify 觸發 build
        ▼
   node inject-env.mjs
-       │  讀取環境變數，寫入
+       │  確認環境變數存在，寫入
        ▼
   config.runtime.js（build 產物，不進 Git）
        │  index.html 載入
        ▼
-  window.STARSHINE_CONFIG.formEndpoint
-  window.STARSHINE_CONFIG.formToken
+  window.STARSHINE_CONFIG.formEndpoint = /api/lead-form
 ```
 
-**重點：Apps Script URL 與 Token 永遠不會出現在 GitHub 原始碼裡。**
+Netlify Function 執行時會讀取 `APPS_SCRIPT_WEB_APP_URL` 與 `FORM_TOKEN`。
+
+**重點：Apps Script URL 與 Token 永遠不會出現在 GitHub 原始碼或瀏覽器前端裡。**
 
 ---
 
@@ -99,7 +104,7 @@ Netlify Dashboard
 
 | 防護機制 | 說明 |
 |----------|------|
-| `FORM_TOKEN` 驗證 | 前後端共享密鑰，陌生請求直接拒絕 |
+| `FORM_TOKEN` 驗證 | Netlify Function 與 Apps Script 共享密鑰，陌生請求直接拒絕 |
 | Honeypot 欄位 | 隱藏的 `website` 欄位，機器人會填，後端偵測到即拒絕 |
 | 時間戳記驗證 | `submittedAt` 偏差超過 10 分鐘的請求視為過期 |
 | Rate limiting | 同一手機號碼 120 秒內只接受一次（Apps Script Cache） |
@@ -111,7 +116,7 @@ Netlify Dashboard
 
 直接用瀏覽器開啟 `index.html` 即可預覽（Tailwind Play CDN 會即時編譯，不需 build）。
 
-表單在本機不會真正送出（`config.runtime.js` 不存在，endpoint 為空字串）。
+表單在本機直接開 `index.html` 不會真正送出（`config.runtime.js` 不存在，endpoint 為空字串）。
 
 若要在本機測試完整表單送出：
 
@@ -122,7 +127,7 @@ FORM_TOKEN='你的token' \
 node inject-env.mjs
 ```
 
-執行後會產生 `config.runtime.js`，重新整理瀏覽器即可測試。
+執行後會產生 `config.runtime.js`。正式送出仍建議在 Netlify 部署後測試，因為表單會送到 Netlify Function `/api/lead-form`。
 
 > **注意：測試完請勿將 `config.runtime.js` 提交到 Git。**
 
@@ -197,6 +202,9 @@ git push -u origin main
 | `FORM_TOKEN` | 與 Apps Script 指令碼屬性完全相同的字串 |
 
 6. 觸發重新部署（Deploys → Trigger deploy）
+7. 部署完成後，打開網站送出一筆測試資料：
+   - 成功：試算表 `Leads` 工作表會新增一列
+   - 失敗：表單下方會顯示 Google Apps Script 回傳的錯誤訊息
 
 ---
 
@@ -234,10 +242,15 @@ Netlify 偵測到 push 後自動 build 並部署，約 30 秒內更新。
 
 表單送出後顯示成功，但試算表沒有資料？
 
-1. 開啟 Apps Script → 執行紀錄，確認 `doPost` 有被觸發
-2. 確認 `FORM_TOKEN` 前後端完全一致（注意空白）
-3. 確認 `SPREADSHEET_ID` 正確，且該 Google 帳號有試算表編輯權限
-4. 確認 Apps Script 已重新部署（每次修改 `.gs` 都要重新部署才生效）
+1. 開啟 Netlify → Functions → `lead-form` logs，確認有沒有錯誤
+2. 開啟 Apps Script → 執行紀錄，確認 `doPost` 有被觸發
+3. 確認 Netlify 的 `FORM_TOKEN` 與 Apps Script 指令碼屬性的 `FORM_TOKEN` 完全一致（注意空白）
+4. 確認 `APPS_SCRIPT_WEB_APP_URL` 是 `/exec` 結尾的 Web App URL，不是 `/dev`
+5. 確認 Apps Script 部署設定：
+   - 執行身分：我
+   - 存取權：任何人
+6. 確認 `SPREADSHEET_ID` 正確，且該 Google 帳號有試算表編輯權限
+7. 確認 Apps Script 已重新部署（每次修改 `.gs` 都要重新部署才生效）
 
 CSS 樣式沒有生效？
 
