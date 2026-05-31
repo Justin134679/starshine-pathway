@@ -587,7 +587,7 @@
   }
   .ch04-next-inline .lbl {
     font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.28em;
     color: #8A6620;
     white-space: nowrap;
@@ -890,7 +890,7 @@
   #market.ch04 .dhm-prompt { margin: 28px 0 18px; }
   #market.ch04 .dhm-prompt .txt {
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-shadow: 0 1px 3px rgba(5,14,28,0.65), 0 0 14px rgba(5,14,28,0.35);

@@ -130,14 +130,14 @@
   }
   .pain-bed-cap .cap-en {
     font-family: "JetBrains Mono", monospace;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.18em;
   }
   .pain-bed-cap .cap-zh {
     margin-left: 3px;
     font-family: "Noto Serif TC", serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.04em;
     color: rgba(7,31,61,0.78);
