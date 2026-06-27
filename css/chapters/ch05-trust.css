@@ -130,8 +130,8 @@
   }
   .ch05-sub {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(27,39,64,0.85);
-    font-size: 14.5px;
+    color: rgba(27,39,64,0.9);
+    font-size: 16px;
     line-height: 1.95;
     max-width: 30em;
     margin: 0 auto;
@@ -157,7 +157,7 @@
     border-radius: 999px;
     background: linear-gradient(to right, rgba(176,133,46,0.22), rgba(176,133,46,0.06));
   }
-  @media (min-width:768px) { .ch05-sub { font-size: 15.5px; } }
+  @media (min-width:768px) { .ch05-sub { font-size: 16.5px; } }
 
   /* QUOTE bridge — editorial banner (no card) */
   .ch05-quote {
@@ -344,11 +344,11 @@
     gap: 6px;
     margin-top: 8px;
     font-family: "Noto Sans TC", sans-serif;
-    font-size: 12.5px;
-    color: #B0852E;
+    font-size: 13.5px;
+    color: #A67C28;
     letter-spacing: 0.04em;
   }
-  @media (min-width:768px) { .concern-hint { font-size: 13.5px; } }
+  @media (min-width:768px) { .concern-hint { font-size: 14.5px; } }
   .concern-hint .sep { color: rgba(176,133,46,0.55); margin: 0 4px; }
   .concern-card.is-open .concern-hint { display: none; }
 
@@ -511,13 +511,13 @@
   @media (min-width:768px) { .concern-solve { font-size: 20px; } }
   .concern-desc {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(27,39,64,0.88);
-    font-size: 13.5px;
-    line-height: 1.85;
+    color: rgba(27,39,64,0.92);
+    font-size: 15px;
+    line-height: 1.88;
     text-wrap: pretty;
     word-break: keep-all;
   }
-  @media (min-width:768px) { .concern-desc { font-size: 14.5px; } }
+  @media (min-width:768px) { .concern-desc { font-size: 16px; } }
 
   /* desktop two-column layout — flatten head + grid into a single editorial layout */
   @media (min-width: 1024px) {

@@ -42,9 +42,14 @@
     object-fit: cover;
     filter: saturate(0.82) brightness(0.92) contrast(1.02);
   }
-  .ch06-photo-yuan { object-position: 65% 38%; }
-  .ch06-photo-yu { object-position: 72% 32%; }
+  .ch06-photo-yuan { object-position: 80% 20%; }
+  .ch06-photo-yu { object-position: 78% 60%; transform: scale(1.12); transform-origin: 75% 35%; }
   .ch06-photo-yang { object-position: 50% 40%; }
+  /* 手機直式：袁先生略降、CHAPTER 標籤上移，讓標籤落在頭頂上方灰底、不壓到頭 */
+  @media (max-width: 767px) {
+    .ch06-photo-yuan { object-position: 80% 4%; }
+    #ch06-case-1 .ch06-tag { bottom: calc(100% + 132px); }
+  }
   .ch06-photo-overlay {
     position: absolute;
     inset: 0;

@@ -208,12 +208,12 @@
   .pain-sub p {
     font-family: "Noto Sans TC", sans-serif;
     color: #2C3640;
-    font-size: 14.5px;
-    line-height: 1.85;
+    font-size: 16px;
+    line-height: 1.9;
     letter-spacing: 0.01em;
   }
   @media (min-width: 768px) {
-    .pain-sub p { font-size: 16px; line-height: 1.9; }
+    .pain-sub p { font-size: 17px; line-height: 1.95; }
   }
   .pain-sub p + p { margin-top: 8px; }
   .pain-sub .u-line {
@@ -367,13 +367,13 @@
   }
   .acc-body p {
     font-family: "Noto Sans TC", sans-serif;
-    color: #525B68;
-    font-size: 14px;
+    color: #46505C;
+    font-size: 15.5px;
     line-height: 1.95;
     letter-spacing: 0.01em;
   }
   @media (min-width: 768px) {
-    .acc-body p { font-size: 15px; }
+    .acc-body p { font-size: 16.5px; }
   }
   /* ACTIVE state */
   .acc-item.is-active .acc-num { color: #B0852E; }
@@ -449,13 +449,13 @@
   .pain-outro p {
     font-family: "Noto Serif TC", serif;
     color: #071F3D;
-    font-size: 14.5px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.78;
     letter-spacing: 0.015em;
     font-weight: 400;
   }
   @media (min-width: 768px) {
-    .pain-outro p { font-size: 16.5px; line-height: 1.75; }
+    .pain-outro p { font-size: 17.5px; line-height: 1.8; }
   }
   .pain-outro p span.text-gold-600 {
     position: relative;

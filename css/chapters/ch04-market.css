@@ -199,8 +199,8 @@
     padding-left: 16px;
     max-width: 28em;
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(94, 98, 104, 0.88);
-    font-size: 14px;
+    color: rgba(70, 80, 92, 0.95);
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.95;
     text-wrap: pretty;
@@ -208,7 +208,7 @@
     overflow-wrap: break-word;
   }
   @media (min-width:768px) {
-    .ch04-lead { font-size: 15.5px; padding-left: 18px; }
+    .ch04-lead { font-size: 16.5px; padding-left: 18px; }
   }
   .ch04-lead::before {
     content:"";
@@ -424,9 +424,9 @@
   }
   .contact-row .desc {
     font-family: "Noto Sans TC", sans-serif;
-    font-size: 14px;
-    line-height: 1.85;
-    color: rgba(27,39,64,0.85);
+    font-size: 15.5px;
+    line-height: 1.9;
+    color: rgba(27,39,64,0.9);
     margin-top: 12px;
     display: none;
   }
@@ -744,14 +744,14 @@
   @media (min-width:768px) { .dhm-headline { font-size: 29px; } }
   .dhm-desc {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(247,244,234,0.85);
-    font-size: 14.5px;
-    line-height: 1.65;
+    color: rgba(247,244,234,0.9);
+    font-size: 15.5px;
+    line-height: 1.72;
     letter-spacing: 0.01em;
     max-width: 22em;
     transition: opacity .26s ease, transform .26s ease;
   }
-  @media (min-width:768px) { .dhm-desc { font-size: 15px; } }
+  @media (min-width:768px) { .dhm-desc { font-size: 16px; } }
 
   /* crossfade-out state — text trio only; the image swap is handled by two stacked layers */
   .dhm-stage.is-switching .dhm-cat,

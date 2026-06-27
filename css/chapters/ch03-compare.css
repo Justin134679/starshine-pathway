@@ -100,12 +100,12 @@
     padding-left: 16px;
     max-width: 28em;
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(27,39,64,0.88);
-    font-size: 14.5px;
+    color: rgba(27,39,64,0.92);
+    font-size: 16px;
     line-height: 1.95;
   }
   @media (min-width:768px) {
-    .ch03-sub { font-size: 15.5px; padding-left: 18px; }
+    .ch03-sub { font-size: 16.5px; padding-left: 18px; }
   }
   .ch03-sub::before {
     content:"";
@@ -197,11 +197,11 @@
   }
   .ch03-row .truth {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(27,39,64,0.88);
-    font-size: 14.5px;
-    line-height: 1.75;
+    color: rgba(27,39,64,0.92);
+    font-size: 15.5px;
+    line-height: 1.8;
   }
-  @media (min-width:768px) { .ch03-row .truth { font-size: 15.5px; } }
+  @media (min-width:768px) { .ch03-row .truth { font-size: 16.5px; } }
 
   /* BRIDGE — full-bleed deep navy block, separate from cream */
   .ch03-bridge-block {
@@ -329,11 +329,11 @@
   @media (min-width:768px) { .ch03-roman-row .rn-ttl { font-size: 19px; } }
   .ch03-roman-row .rn-desc {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(241,238,230,0.85);
-    font-size: 14px;
-    line-height: 1.75;
+    color: rgba(241,238,230,0.9);
+    font-size: 15.5px;
+    line-height: 1.8;
   }
-  @media (min-width:768px) { .ch03-roman-row .rn-desc { font-size: 14.5px; } }
+  @media (min-width:768px) { .ch03-roman-row .rn-desc { font-size: 16px; } }
 
   /* Closing transition — soft cream paragraph between list and NEXT */
   .ch03-bridge-outro {
@@ -465,13 +465,13 @@
   }
   .cmp-sub p {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(247,248,245,0.88);
-    font-size: 14.5px;
-    line-height: 1.85;
+    color: rgba(247,248,245,0.92);
+    font-size: 16px;
+    line-height: 1.9;
     letter-spacing: 0.01em;
   }
   @media (min-width: 768px) {
-    .cmp-sub p { font-size: 16px; line-height: 1.9; }
+    .cmp-sub p { font-size: 17px; line-height: 1.92; }
   }
 
   /* Card — horizontal split: surface (left) | reality (right) */
@@ -586,13 +586,13 @@
   .cmp-reality p {
     font-family: "Noto Serif TC", serif;
     color: #F7F8F5;
-    font-size: 14.5px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.78;
     letter-spacing: 0.015em;
     font-weight: 400;
   }
   @media (min-width: 768px) {
-    .cmp-reality p { font-size: 15.5px; line-height: 1.75; }
+    .cmp-reality p { font-size: 16.5px; line-height: 1.8; }
   }
 
   /* Transition (bridge to next chapter) */
@@ -690,13 +690,13 @@
   }
   .cmp-point .desc {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(247,248,245,0.85);
-    font-size: 14px;
-    line-height: 1.75;
+    color: rgba(247,248,245,0.9);
+    font-size: 15px;
+    line-height: 1.8;
     letter-spacing: 0.01em;
   }
   @media (min-width: 768px) {
-    .cmp-point .desc { font-size: 14.5px; }
+    .cmp-point .desc { font-size: 15.5px; }
   }
   .cmp-bridge .next-cue {
     display: inline-flex;
@@ -839,14 +839,14 @@
 
   .ch03b-sub {
     font-family: "Noto Sans TC", sans-serif;
-    color: rgba(27,39,64,0.85);
-    font-size: 14.5px;
+    color: rgba(27,39,64,0.9);
+    font-size: 16px;
     line-height: 1.95;
     max-width: 28em;
     word-break: keep-all;
   }
   @media (min-width:768px) {
-    .ch03b-sub { font-size: 15.5px; }
+    .ch03b-sub { font-size: 16.5px; }
   }
 
   /* COUNTER + ARROWS */
@@ -1441,9 +1441,9 @@
   .sb-scene-risks {
     margin-top: 8px;
     font-family: "Noto Sans TC", sans-serif;
-    font-size: 13px;
-    color: rgba(21,38,63,0.72);
-    line-height: 1.4;
+    font-size: 14px;
+    color: rgba(21,38,63,0.8);
+    line-height: 1.45;
     letter-spacing: 0.04em;
     word-break: keep-all;
     display: grid;
@@ -1472,12 +1472,12 @@
     .sb-scene-name  { font-size: 30px; }
     .sb-scene-feel  { font-size: 14.5px; }
     .sb-scene-truth { font-size: 17.5px; }
-    .sb-scene-risks { font-size: 13.8px; gap: 8px; }
+    .sb-scene-risks { font-size: 14.5px; gap: 8px; }
   }
   @media (min-width: 1024px) {
     .sb-scene-name  { font-size: 34px; }
     .sb-scene-truth { font-size: 19px; }
-    .sb-scene-risks { font-size: 14.2px; }
+    .sb-scene-risks { font-size: 15px; }
   }
 
   .sb-scene-progress {
