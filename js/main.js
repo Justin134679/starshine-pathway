@@ -171,6 +171,8 @@
   const bottomCta = document.getElementById('bottomCta');
   const heroEl = document.getElementById('top');
   const ctaEl = document.getElementById('cta');
+  // interactive selector rows the floating CTA must not cover (ch03 tabs, ch04 chips)
+  const tapRows = document.querySelectorAll('.sb-tickets, .dhm-grid');
 
   function updateBottomCta() {
     if (!bottomCta || !heroEl || !ctaEl) return;
@@ -181,7 +183,13 @@
     const inHero = heroBottom > vh * 0.4;
     // hide while the form CTA section is showing
     const inFormCta = ctaRect.top < vh * 0.85 && ctaRect.bottom > vh * 0.15;
-    bottomCta.classList.toggle('hide', inHero || inFormCta);
+    // hide while an interactive selector row sits in the pill's bottom zone
+    let inTapRow = false;
+    for (let i = 0; i < tapRows.length; i++) {
+      const r = tapRows[i].getBoundingClientRect();
+      if (r.bottom > vh * 0.72 && r.top < vh) { inTapRow = true; break; }
+    }
+    bottomCta.classList.toggle('hide', inHero || inFormCta || inTapRow);
   }
   updateBottomCta();
   window.addEventListener('scroll', updateBottomCta, { passive: true });
