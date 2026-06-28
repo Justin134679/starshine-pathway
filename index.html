@@ -134,6 +134,34 @@
 <link rel="stylesheet" href="css/chapters/ch07-cta.css" />
 <script src="config.public.js"></script>
 <script src="config.runtime.js"></script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'PASTE_YOUR_PIXEL_ID_HERE');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=PASTE_YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- 加 LINE 按鈕 → 回報 Meta「潛在客戶 Lead」事件 -->
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href*="lin.ee"], a[href*="line.me"]');
+  if (a && typeof fbq === 'function') {
+    fbq('track', 'Lead', { content_name: 'add-line', source: 'starshine-pathway' });
+  }
+}, true);
+</script>
 </head>
 <body class="overflow-x-hidden bg-navy-900">
 
