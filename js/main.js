@@ -171,8 +171,8 @@
   const bottomCta = document.getElementById('bottomCta');
   const heroEl = document.getElementById('top');
   const ctaEl = document.getElementById('cta');
-  // interactive selector rows the floating CTA must not cover (ch03 tabs, ch04 chips)
-  const tapRows = document.querySelectorAll('.sb-tickets, .dhm-grid');
+  // interactive selector rows the floating CTA must not cover (ch02 accordion, ch03 tabs, ch04 chips)
+  const tapRows = document.querySelectorAll('#painAcc, .sb-tickets, .dhm-grid');
 
   function updateBottomCta() {
     if (!bottomCta || !heroEl || !ctaEl) return;
